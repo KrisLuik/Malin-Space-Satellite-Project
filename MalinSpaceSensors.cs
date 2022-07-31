@@ -22,6 +22,7 @@ namespace MalinSpaceProject
         {
             InitializeComponent();
         }
+
         // 4.1	Create two data structures using the LinkedList<T> class
         // from the C# Systems.Collections.Generic namespace.
         // The data must be of type “double”.
@@ -55,7 +56,7 @@ namespace MalinSpaceProject
             {
                 ListViewItem lvi = new ListViewItem(SensorA.ElementAt(i).ToString());
                 lvi.SubItems.Add(SensorB.ElementAt(i).ToString());
-                listviewDisplaybox.Items.Add(lvi);    
+                listviewDisplaybox.Items.Add(lvi);
             }
         }
         // 4.4	Create a button and associated click method
@@ -94,7 +95,30 @@ namespace MalinSpaceProject
         #endregion
         // 4.14	Add two textboxes for the search value;
         // one for each sensor, ensure only numeric values can be entered.
-        #region TextBoxes
+        #region TextBoxes Input Handling
+        private void KeyPressAction(Object sender, KeyPressEventArgs e)
+        {
+            // "sender" stands for the object that raises the event.
+            // I am casting the sender using "as" keyword to avoid runtime exception
+            // that would occur if I used "Textbox tb = Textbox(sender)".
+            TextBox tb = sender as TextBox;
+
+            if (tb == null)
+            {
+                MessageBox.Show("Keypress event was not fired by a textbox.");
+                e.Handled = true;
+            }
+
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+            // Only allow one decimal point.
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
         #endregion
 
         #region Binary search methods
