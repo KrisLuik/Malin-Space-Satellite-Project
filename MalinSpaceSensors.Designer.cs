@@ -347,6 +347,7 @@
             this.selectionSortSensorABtn.TabIndex = 23;
             this.selectionSortSensorABtn.Text = "Sort";
             this.selectionSortSensorABtn.UseVisualStyleBackColor = true;
+            this.selectionSortSensorABtn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.selectionSortSensorABtn_MouseClick);
             // 
             // label7
             // 
@@ -376,6 +377,7 @@
             this.selectionSortSensorBBtn.TabIndex = 26;
             this.selectionSortSensorBBtn.Text = "Sort";
             this.selectionSortSensorBBtn.UseVisualStyleBackColor = true;
+            this.selectionSortSensorBBtn.Click += new System.EventHandler(this.selectionSortSensorBBtn_Click);
             // 
             // label8
             // 
