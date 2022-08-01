@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Galileo;
+using System.Diagnostics;
 
 // Name: Kristiin Tribbeck
 // Date: 19/07/2022
@@ -44,13 +45,16 @@ namespace MalinSpaceProject
                 SensorA.AddLast(num.SensorA((double)muNumericUpDown.Value, (double)sigmaNumericUpDown.Value));
                 SensorB.AddLast(num.SensorB((double)muNumericUpDown.Value, (double)sigmaNumericUpDown.Value));
             }
+            ShowAllSensorData();
+            DisplayListboxData(SensorA, listBoxDisplaySensorA);
+            DisplayListboxData(SensorB, listBoxDisplaySensorB);
         }
         // 4.3	Create a custom method called “ShowAllSensorData” which will display
         // both LinkedLists in a ListView. Add column titles “Sensor A” and “Sensor B”
         // to the ListView. The input parameters are empty, and the return type is void.
         private void ShowAllSensorData()
         {
-            PopulateSensors();
+            // list view display
             listviewDisplaybox.Items.Clear();
             for (int i = 0; i < SensorA.Count; i++)
             {
@@ -64,9 +68,7 @@ namespace MalinSpaceProject
         // The input parameters are empty, and the return type is void.
         private void loadSensorDataButton_Click(object sender, EventArgs e)
         {
-            ShowAllSensorData();
-            DisplayListboxData(SensorA, listBoxDisplaySensorA);
-            DisplayListboxData(SensorB, listBoxDisplaySensorB);
+            PopulateSensors();
         }
         // 4.5 Create a method called “NumberOfNodes” that will return an integer
         // which is the number of nodes(elements) in a LinkedList.
@@ -86,12 +88,10 @@ namespace MalinSpaceProject
         }
         private void DisplayListboxData(LinkedList<double> sensorType, ListBox listBoxName)
         {
-            listBoxDisplaySensorA.Items.Clear();
-            listBoxDisplaySensorB.Items.Clear();
-            for (int i = 0; i < SensorA.Count; i++)
+            listBoxName.Items.Clear();
+            foreach (var node in sensorType)
             {
-                listBoxDisplaySensorA.Items.Add(SensorA.ElementAt(i).ToString());
-                listBoxDisplaySensorB.Items.Add(SensorB.ElementAt(i).ToString());
+                listBoxName.Items.Add(node);
             }
         }
         #endregion
@@ -126,7 +126,7 @@ namespace MalinSpaceProject
         // while the calling code argument is the linkedlist name. The method code must follow the pseudo
         // code supplied below in the Appendix. The return type is Boolean.
         #region Binary search methods
-        private void SelectionSort(LinkedList<double> unsortedList)
+        private bool SelectionSort(LinkedList<double> unsortedList)
         {
             int min = 0;
             int max = NumberOfNodes(unsortedList);
@@ -138,7 +138,6 @@ namespace MalinSpaceProject
                     if (unsortedList.ElementAt(j).CompareTo(unsortedList.ElementAt(min)) < 0)
                     {
                         min = j;
-                       // return true;
                     }
                 }
                 LinkedListNode<double> currentMin = unsortedList.Find(unsortedList.ElementAt(min));
@@ -147,7 +146,7 @@ namespace MalinSpaceProject
                 currentMin.Value = currentI.Value;
                 currentI.Value = temp;
             }
-            //return true;
+            return true;
 
         }
         #endregion
@@ -155,15 +154,71 @@ namespace MalinSpaceProject
         // SensorA Selection Sort Button
         private void selectionSortSensorABtn_MouseClick(object sender, MouseEventArgs e)
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             SelectionSort(SensorA);
+            sw.Stop();  
+            ShowAllSensorData();
             DisplayListboxData(SensorA, listBoxDisplaySensorA);
+            textboxSelectionSortSensorA.Text = String.Format("{0} ms", sw.ElapsedMilliseconds);
+
         }
         // SensorB Selection Sort Button
         private void selectionSortSensorBBtn_Click(object sender, EventArgs e)
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             SelectionSort(SensorB);
+            sw.Stop();
+            ShowAllSensorData();
             DisplayListboxData(SensorB, listBoxDisplaySensorB);
+            textboxSelectionSortSensorB.Text = String.Format("{0} ms", sw.ElapsedMilliseconds);
         }
         #endregion
+        // 4.8	Create a method called “InsertionSort” which has a single parameter of type LinkedList,
+        // while the calling code argument is the linkedlist name. The method code must follow the pseudo
+        // code supplied below in the Appendix. The return type is Boolean.
+        #region Insertion Sort Method
+        private bool InsertionSort(LinkedList<double> unsortedList)
+        {
+            int max = NumberOfNodes(unsortedList);
+            for (int i = 0; i < max - 1; i++)
+            {
+                for (int j = i + 1; j > 0; j--)
+                {
+                    if (unsortedList.ElementAt(j - 1).CompareTo(unsortedList.ElementAt(j)) > 0)
+                    {
+                        LinkedListNode<double> current = unsortedList.Find(unsortedList.ElementAt(j));
+                        var temp = current.Previous.Value;
+                        current.Previous.Value = current.Value;
+                        current.Value = temp;
+                    }
+                }
+            }
+            return true;
+        }
+        // SensorA 
+        private void insertionSortSensorABtn_Click(object sender, EventArgs e)
+        {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            InsertionSort(SensorA);
+            sw.Stop();
+            ShowAllSensorData();
+            DisplayListboxData(SensorA, listBoxDisplaySensorA);
+            textboxInsertionSensorA.Text = String.Format("{0} ms", sw.ElapsedMilliseconds);
+        }
+        #endregion
+        // SensorB
+        private void insertionSortSensorBBtn_Click(object sender, EventArgs e)
+        {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            InsertionSort(SensorB);
+            sw.Stop();
+            ShowAllSensorData();
+            DisplayListboxData(SensorB, listBoxDisplaySensorB);
+            textboxInsertionSensorB.Text = String.Format("{0} ms", sw.ElapsedMilliseconds);
+        }
     }
 }
