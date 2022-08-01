@@ -41,7 +41,7 @@ namespace MalinSpaceProject
             SensorB.Clear();
             for (int i = 0; i < collectionSize; i++)
             {
-                SensorA.AddLast(num.SensorA((double)sigmaNumericUpDown.Value, (double)muNumericUpDown.Value));
+                SensorA.AddLast(num.SensorA((double)muNumericUpDown.Value, (double)sigmaNumericUpDown.Value));
                 SensorB.AddLast(num.SensorB((double)muNumericUpDown.Value, (double)sigmaNumericUpDown.Value));
             }
         }
@@ -86,6 +86,8 @@ namespace MalinSpaceProject
         }
         private void DisplayListboxData(LinkedList<double> sensorType, ListBox listBoxName)
         {
+            listBoxDisplaySensorA.Items.Clear();
+            listBoxDisplaySensorB.Items.Clear();
             for (int i = 0; i < SensorA.Count; i++)
             {
                 listBoxDisplaySensorA.Items.Add(SensorA.ElementAt(i).ToString());
@@ -120,9 +122,48 @@ namespace MalinSpaceProject
             }
         }
         #endregion
-
+        // 4.7	Create a method called “SelectionSort” which has a single input parameter of type LinkedList,
+        // while the calling code argument is the linkedlist name. The method code must follow the pseudo
+        // code supplied below in the Appendix. The return type is Boolean.
         #region Binary search methods
+        private void SelectionSort(LinkedList<double> unsortedList)
+        {
+            int min = 0;
+            int max = NumberOfNodes(unsortedList);
+            for (int i = 0; i < max - 1; i++)
+            {
+                min = i;
+                for (int j = i + 1; j < max; j++)
+                {
+                    if (unsortedList.ElementAt(j).CompareTo(unsortedList.ElementAt(min)) < 0)
+                    {
+                        min = j;
+                       // return true;
+                    }
+                }
+                LinkedListNode<double> currentMin = unsortedList.Find(unsortedList.ElementAt(min));
+                LinkedListNode<double> currentI = unsortedList.Find(unsortedList.ElementAt(i));
+                var temp = currentMin.Value;
+                currentMin.Value = currentI.Value;
+                currentI.Value = temp;
+            }
+            //return true;
 
+        }
+        #endregion
+        #region Selection Sort Buttons
+        // SensorA Selection Sort Button
+        private void selectionSortSensorABtn_MouseClick(object sender, MouseEventArgs e)
+        {
+            SelectionSort(SensorA);
+            DisplayListboxData(SensorA, listBoxDisplaySensorA);
+        }
+        // SensorB Selection Sort Button
+        private void selectionSortSensorBBtn_Click(object sender, EventArgs e)
+        {
+            SelectionSort(SensorB);
+            DisplayListboxData(SensorB, listBoxDisplaySensorB);
+        }
         #endregion
     }
 }
