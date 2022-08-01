@@ -243,6 +243,7 @@
             this.iterativeSearchSensorABtn.TabIndex = 12;
             this.iterativeSearchSensorABtn.Text = "Search";
             this.iterativeSearchSensorABtn.UseVisualStyleBackColor = true;
+            this.iterativeSearchSensorABtn.Click += new System.EventHandler(this.iterativeSearchSensorABtn_Click);
             // 
             // iterativeSearchSensorBBtn
             // 

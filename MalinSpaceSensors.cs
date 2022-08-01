@@ -208,7 +208,6 @@ namespace MalinSpaceProject
             DisplayListboxData(SensorA, listBoxDisplaySensorA);
             textboxInsertionSensorA.Text = String.Format("{0} ms", sw.ElapsedMilliseconds);
         }
-        #endregion
         // SensorB
         private void insertionSortSensorBBtn_Click(object sender, EventArgs e)
         {
@@ -219,6 +218,40 @@ namespace MalinSpaceProject
             ShowAllSensorData();
             DisplayListboxData(SensorB, listBoxDisplaySensorB);
             textboxInsertionSensorB.Text = String.Format("{0} ms", sw.ElapsedMilliseconds);
+        }
+        #endregion
+        // 4.9	Create a method called “BinarySearchIterative” which has the following four parameters: LinkedList, SearchValue, Minimum and Maximum.
+        // This method will return an integer of the linkedlist element from a successful search or the nearest neighbour value. The calling code argument is the linkedlist.
+        // name, search value, minimum list size and the number of nodes in the list. The method code must follow the pseudo code supplied below in the Appendix.
+        private int BinarySearchIterative(LinkedList<double> list, TextBox searchValue, int min, int max)
+        {
+            min = ((int)list.First.Value);
+            max = NumberOfNodes(list);
+            int target = int.Parse(searchValue.Text); 
+            
+            while(min < max - 1)
+            {
+                int mid = ((min + max) / 2);
+                if (target.Equals(list.ElementAt(mid) == 0))
+                {
+                    return ++mid;
+                }
+                else if (target.Equals(list.ElementAt(mid) < 0))
+                {
+                    max = mid - 1;
+                 
+                }
+                else
+                {
+                    min = mid + 1;
+                }
+            }
+            return min;
+        }
+
+        private void iterativeSearchSensorABtn_Click(object sender, EventArgs e)
+        {
+           // BinarySearchIterative(SensorA, textBoxSearchTargetA.Text ,(int)SensorA.First.Value,(int)SensorA.Last.Value);
         }
     }
 }
