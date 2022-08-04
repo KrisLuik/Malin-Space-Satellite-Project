@@ -157,7 +157,7 @@ namespace MalinSpaceProject
             Stopwatch sw = new Stopwatch();
             sw.Start();
             SelectionSort(SensorA);
-            sw.Stop();  
+            sw.Stop();
             ShowAllSensorData();
             DisplayListboxData(SensorA, listBoxDisplaySensorA);
             textboxSelectionSortSensorA.Text = String.Format("{0} ms", sw.ElapsedMilliseconds);
@@ -221,25 +221,21 @@ namespace MalinSpaceProject
         }
         #endregion
         // 4.9	Create a method called “BinarySearchIterative” which has the following four parameters: LinkedList, SearchValue, Minimum and Maximum.
-        // This method will return an integer of the linkedlist element from a successful search or the nearest neighbour value. The calling code argument is the linkedlist.
-        // name, search value, minimum list size and the number of nodes in the list. The method code must follow the pseudo code supplied below in the Appendix.
-        private int BinarySearchIterative(LinkedList<double> list, TextBox searchValue, int min, int max)
+        // This method will return an integer of the linkedlist element from a successful search or the nearest neighbour value. The calling code argument is 
+        // the linkedlist name, search value, minimum list size and the number of nodes in the list. The method code must follow the pseudo code supplied below in the Appendix.
+        private int BinarySearchIterative(LinkedList<double> list, int searchValue, int min, int max)
         {
-            min = ((int)list.First.Value);
-            max = NumberOfNodes(list);
-            int target = int.Parse(searchValue.Text); 
-            
-            while(min < max - 1)
+            while (min <= max - 1)
             {
-                int mid = ((min + max) / 2);
-                if (target.Equals(list.ElementAt(mid) == 0))
+                int mid = (min + max) / 2;
+                if (searchValue == list.ElementAt(mid))
                 {
                     return ++mid;
                 }
-                else if (target.Equals(list.ElementAt(mid) < 0))
+                else if (searchValue < list.ElementAt(mid))
                 {
                     max = mid - 1;
-                 
+                    return max;
                 }
                 else
                 {
@@ -248,10 +244,13 @@ namespace MalinSpaceProject
             }
             return min;
         }
-
         private void iterativeSearchSensorABtn_Click(object sender, EventArgs e)
         {
-           // BinarySearchIterative(SensorA, textBoxSearchTargetA.Text ,(int)SensorA.First.Value,(int)SensorA.Last.Value);
+            InsertionSort(SensorA);
+            BinarySearchIterative(SensorA, int.Parse(textBoxSearchTargetA.Text.ToString()), (int)SensorA.First.Value, NumberOfNodes(SensorA));
+            ShowAllSensorData();
+            DisplayListboxData(SensorA, listBoxDisplaySensorA);
+            textboxIterativeSensorA.Text = textBoxSearchTargetA.Text;
         }
     }
 }
