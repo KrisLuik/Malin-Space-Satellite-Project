@@ -156,7 +156,6 @@
             this.listBoxDisplaySensorA.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxDisplaySensorA.Size = new System.Drawing.Size(148, 420);
             this.listBoxDisplaySensorA.TabIndex = 6;
-            this.listBoxDisplaySensorA.SelectedIndexChanged += new System.EventHandler(this.listBoxDisplaySensorA_SelectedIndexChanged);
             // 
             // listBoxDisplaySensorB
             // 
@@ -252,6 +251,7 @@
             this.iterativeSearchSensorBBtn.TabIndex = 13;
             this.iterativeSearchSensorBBtn.Text = "Search";
             this.iterativeSearchSensorBBtn.UseVisualStyleBackColor = true;
+            this.iterativeSearchSensorBBtn.Click += new System.EventHandler(this.iterativeSearchSensorBBtn_Click);
             // 
             // textboxIterativeSensorA
             // 
@@ -292,6 +292,7 @@
             this.recusiveSearchSensorABtn.TabIndex = 17;
             this.recusiveSearchSensorABtn.Text = "Search";
             this.recusiveSearchSensorABtn.UseVisualStyleBackColor = true;
+            this.recusiveSearchSensorABtn.Click += new System.EventHandler(this.recusiveSearchSensorABtn_Click);
             // 
             // label5
             // 
@@ -321,6 +322,7 @@
             this.recursiveSearchSensorBBtn.TabIndex = 20;
             this.recursiveSearchSensorBBtn.Text = "Search";
             this.recursiveSearchSensorBBtn.UseVisualStyleBackColor = true;
+            this.recursiveSearchSensorBBtn.Click += new System.EventHandler(this.recursiveSearchSensorBBtn_Click);
             // 
             // label6
             // 
