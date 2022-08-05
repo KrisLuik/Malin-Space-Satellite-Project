@@ -69,6 +69,8 @@ namespace MalinSpaceProject
         private void loadSensorDataButton_Click(object sender, EventArgs e)
         {
             PopulateSensors();
+            //DisplayListboxData(SensorA, listBoxDisplaySensorA);
+            //DisplayListboxData(SensorB, listBoxDisplaySensorB);
         }
         // 4.5 Create a method called “NumberOfNodes” that will return an integer
         // which is the number of nodes(elements) in a LinkedList.
@@ -220,10 +222,42 @@ namespace MalinSpaceProject
             textboxInsertionSensorB.Text = String.Format("{0} ms", sw.ElapsedMilliseconds);
         }
         #endregion
-        // 4.9	Create a method called “BinarySearchIterative” which has the following four parameters: LinkedList, SearchValue, Minimum and Maximum.
-        // This method will return an integer of the linkedlist element from a successful search or the nearest neighbour value. The calling code argument is 
-        // the linkedlist name, search value, minimum list size and the number of nodes in the list. The method code must follow the pseudo code supplied below in the Appendix.
-        private int BinarySearchIterative(LinkedList<double> list, int searchValue, int min, int max)
+        // 4.9	Create a method called “BinarySearchIterative” which has the following four parameters:
+        // LinkedList, SearchValue, Minimum and Maximum.This method will return an integer of the linkedlist element
+        // from a successful search or the nearest neighbour value. The calling code argument is 
+        // the linkedlist name, search value, minimum list size and the number of nodes in the list.
+        // The method code must follow the pseudo code supplied below in the Appendix.
+        private void FindAllOfMyString(TextBox searchString, ListBox listboxHighlightData)
+        {
+            // Set the SelectionMode property of the ListBox to select multiple items.
+            listboxHighlightData.SelectionMode = SelectionMode.MultiExtended;
+
+            // Set our intial index variable to -1.
+            int initialIndex = -1;
+            // If the search string is empty exit.
+            if (searchString.Text != string.Empty)
+            {
+                // Loop through and find each item that matches the search string.
+                do
+                {
+                    // Retrieve the item based on the previous index found. Starts with -1 which searches start.
+                    initialIndex = listboxHighlightData.FindString(searchString.Text, initialIndex);
+                    // If no item is found that matches exit.
+                    if (initialIndex != -1)
+                    {
+                        // Since the FindString loops infinitely, determine if we found first item again and exit.
+                        if (listboxHighlightData.SelectedIndices.Count > 0)
+                        {
+                            if (initialIndex == listboxHighlightData.SelectedIndices[0])
+                                return;
+                        }
+                        // Select the item in the ListBox once it is found.
+                        listboxHighlightData.SetSelected(initialIndex, true);
+                    }    
+                } while (initialIndex != -1);
+            }
+        }
+        private int BinarySearchIterative(LinkedList<double> list, double searchValue, int min, int max)
         {
             while (min <= max - 1)
             {
@@ -235,7 +269,6 @@ namespace MalinSpaceProject
                 else if (searchValue < list.ElementAt(mid))
                 {
                     max = mid - 1;
-                    return max;
                 }
                 else
                 {
@@ -246,11 +279,14 @@ namespace MalinSpaceProject
         }
         private void iterativeSearchSensorABtn_Click(object sender, EventArgs e)
         {
-            InsertionSort(SensorA);
-            BinarySearchIterative(SensorA, int.Parse(textBoxSearchTargetA.Text.ToString()), (int)SensorA.First.Value, NumberOfNodes(SensorA));
-            ShowAllSensorData();
-            DisplayListboxData(SensorA, listBoxDisplaySensorA);
-            textboxIterativeSensorA.Text = textBoxSearchTargetA.Text;
+            BinarySearchIterative(SensorA, Double.Parse(textBoxSearchTargetA.Text.ToString()), (int)SensorA.First.Value, NumberOfNodes(SensorA));
+            FindAllOfMyString(textBoxSearchTargetA, listBoxDisplaySensorA);
+            ShowAllSensorData();  
+        }
+
+        private void listBoxDisplaySensorA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           // Deleting this block- not necessary in my code.
         }
     }
 }
