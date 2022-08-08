@@ -174,6 +174,7 @@ namespace MalinSpaceProject
         // SensorA Selection Sort Button.
         private void selectionSortSensorABtn_MouseClick(object sender, MouseEventArgs e)
         {
+            PopulateSensors();
             Stopwatch sw = new Stopwatch();
             sw.Start();
             SelectionSort(SensorA);
@@ -187,6 +188,7 @@ namespace MalinSpaceProject
         // SensorB Selection Sort Button.
         private void selectionSortSensorBBtn_Click(object sender, EventArgs e)
         {
+            PopulateSensors();
             Stopwatch sw = new Stopwatch();
             sw.Start();
             SelectionSort(SensorB);
@@ -224,6 +226,7 @@ namespace MalinSpaceProject
         // SensorA insertion sort button. 
         private void insertionSortSensorABtn_Click(object sender, EventArgs e)
         {
+            PopulateSensors();
             Stopwatch sw = new Stopwatch();
             sw.Start();
             InsertionSort(SensorA);
@@ -236,6 +239,7 @@ namespace MalinSpaceProject
         // SensorB insertion sort button.
         private void insertionSortSensorBBtn_Click(object sender, EventArgs e)
         {
+            PopulateSensors();
             Stopwatch sw = new Stopwatch();
             sw.Start();
             InsertionSort(SensorB);
@@ -356,7 +360,7 @@ namespace MalinSpaceProject
                     DisplayListboxData(SensorA, listBoxDisplaySensorA);
                     Stopwatch sw = new Stopwatch();
                     sw.Start();
-                    int searchedIndex = BinarySearchIterative(SensorA, Double.Parse(textBoxSearchTargetA.Text.ToString()), (int)SensorA.First.Value, NumberOfNodes(SensorA));
+                    int searchedIndex = BinarySearchIterative(SensorA, Double.Parse(textBoxSearchTargetA.Text.ToString()), 0, NumberOfNodes(SensorA));
                     sw.Stop();
                     HighlightData(searchedIndex, SensorA, listBoxDisplaySensorA);
                     ShowAllSensorData();
@@ -378,7 +382,7 @@ namespace MalinSpaceProject
                     DisplayListboxData(SensorB, listBoxDisplaySensorB);
                     Stopwatch sw = new Stopwatch();
                     sw.Start();
-                    int searchedIndex = BinarySearchIterative(SensorB, Double.Parse(textBoxSearchTargetB.Text.ToString()), (int)SensorB.First.Value, NumberOfNodes(SensorB));
+                    int searchedIndex = BinarySearchIterative(SensorB, Double.Parse(textBoxSearchTargetB.Text.ToString()), 0, NumberOfNodes(SensorB));
                     sw.Stop();
                     HighlightData(searchedIndex, SensorB, listBoxDisplaySensorB);
                     ShowAllSensorData();
