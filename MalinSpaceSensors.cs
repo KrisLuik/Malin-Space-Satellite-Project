@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Galileo;
 using System.Diagnostics;
+using System.Linq;
+using System.Windows.Forms;
 
 // Name: Kristiin Tribbeck
 // Date: 19/07/2022
@@ -53,7 +47,6 @@ namespace MalinSpaceProject
         // to the ListView. The input parameters are empty, and the return type is void.
         private void ShowAllSensorData()
         {
-            // list view display
             listviewDisplaybox.Items.Clear();
             for (int i = 0; i < SensorA.Count; i++)
             {
@@ -69,6 +62,7 @@ namespace MalinSpaceProject
         {
             PopulateSensors();
         }
+        #endregion
         // 4.5 Create a method called “NumberOfNodes” that will return an integer
         // which is the number of nodes(elements) in a LinkedList.
         // The method signature will have an input parameter of type LinkedList,
@@ -79,7 +73,6 @@ namespace MalinSpaceProject
         // The method signature will have two input parameters; a LinkedList,
         // and the ListBox name. The calling code argument is the linkedlist name
         // and the listbox name.
-        #endregion
         #region Utility methods
         private int NumberOfNodes(LinkedList<double> sensorName)
         {
@@ -120,11 +113,37 @@ namespace MalinSpaceProject
                 e.Handled = true;
             }
         }
+        private void ClearTextBox(TextBox textboxSearch)
+        {
+            textboxSearch.Clear();
+            textboxSearch.Focus();
+        }
+        #endregion
+        #region Highlight Values in listbox method
+        private void HighlightData(int searchedIndex, LinkedList<double> list, ListBox listbox)
+        {
+            listbox.ClearSelected();
+            for (int i = searchedIndex - 3; i <= searchedIndex + 3; i++)
+            {
+                if (i < 0)
+                {
+
+                }
+                else if (i > NumberOfNodes(list) - 1)
+                {
+
+                }
+                else
+                {
+                    listbox.SelectedIndices.Add(i);
+                }
+            }
+        }
         #endregion
         // 4.7	Create a method called “SelectionSort” which has a single input parameter of type LinkedList,
         // while the calling code argument is the linkedlist name. The method code must follow the pseudo
         // code supplied below in the Appendix. The return type is Boolean.
-        #region Binary search methods
+        #region Binary Selection Sort Method
         private bool SelectionSort(LinkedList<double> unsortedList)
         {
             int min = 0;
@@ -148,8 +167,11 @@ namespace MalinSpaceProject
             return true;
         }
         #endregion
+        // The button method must start a stopwatch before calling the sort method. Once the sort is complete
+        // the stopwatch will stop and the number of milliseconds will be displayed in a read only textbox.
+        // Finally, the code will call the “ShowAllSensorData” method and “DisplayListboxData” for the appropriate sensor.
         #region Selection Sort Buttons
-        // SensorA Selection Sort Button
+        // SensorA Selection Sort Button.
         private void selectionSortSensorABtn_MouseClick(object sender, MouseEventArgs e)
         {
             Stopwatch sw = new Stopwatch();
@@ -158,9 +180,11 @@ namespace MalinSpaceProject
             sw.Stop();
             ShowAllSensorData();
             DisplayListboxData(SensorA, listBoxDisplaySensorA);
-            textboxSelectionSortSensorA.Text = String.Format("{0} ms", sw.ElapsedMilliseconds);
+            textboxSelectionSortSensorA.Text = String.Format("{0:0.00} ms", sw.ElapsedMilliseconds);
+            ClearTextBox(textBoxSearchTargetA);
+
         }
-        // SensorB Selection Sort Button
+        // SensorB Selection Sort Button.
         private void selectionSortSensorBBtn_Click(object sender, EventArgs e)
         {
             Stopwatch sw = new Stopwatch();
@@ -169,7 +193,8 @@ namespace MalinSpaceProject
             sw.Stop();
             ShowAllSensorData();
             DisplayListboxData(SensorB, listBoxDisplaySensorB);
-            textboxSelectionSortSensorB.Text = String.Format("{0} ms", sw.ElapsedMilliseconds);
+            textboxSelectionSortSensorB.Text = String.Format("{0:0.00} ms", sw.ElapsedMilliseconds);
+            ClearTextBox(textBoxSearchTargetB);
         }
         #endregion
         // 4.8	Create a method called “InsertionSort” which has a single parameter of type LinkedList,
@@ -194,7 +219,9 @@ namespace MalinSpaceProject
             }
             return true;
         }
-        // SensorA 
+        #endregion
+        #region Insertion Sort Buttons
+        // SensorA insertion sort button. 
         private void insertionSortSensorABtn_Click(object sender, EventArgs e)
         {
             Stopwatch sw = new Stopwatch();
@@ -203,9 +230,10 @@ namespace MalinSpaceProject
             sw.Stop();
             ShowAllSensorData();
             DisplayListboxData(SensorA, listBoxDisplaySensorA);
-            textboxInsertionSensorA.Text = String.Format("{0} ms", sw.ElapsedMilliseconds);
+            textboxInsertionSensorA.Text = String.Format("{0:0.00} ms", sw.ElapsedMilliseconds);
+            ClearTextBox(textBoxSearchTargetA);
         }
-        // SensorB
+        // SensorB insertion sort button.
         private void insertionSortSensorBBtn_Click(object sender, EventArgs e)
         {
             Stopwatch sw = new Stopwatch();
@@ -214,7 +242,8 @@ namespace MalinSpaceProject
             sw.Stop();
             ShowAllSensorData();
             DisplayListboxData(SensorB, listBoxDisplaySensorB);
-            textboxInsertionSensorB.Text = String.Format("{0} ms", sw.ElapsedMilliseconds);
+            textboxInsertionSensorB.Text = String.Format("{0:0.00} ms", sw.ElapsedMilliseconds);
+            ClearTextBox(textBoxSearchTargetB);
         }
         #endregion
         // 4.9	Create a method called “BinarySearchIterative” which has the following four parameters:
@@ -243,57 +272,50 @@ namespace MalinSpaceProject
             }
             return min;
         }
+        #endregion
+        #region Binary Search Iterative Buttons
         private void iterativeSearchSensorABtn_Click(object sender, EventArgs e)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            BinarySearchIterative(SensorA, Double.Parse(textBoxSearchTargetA.Text.ToString()), (int)SensorA.First.Value, NumberOfNodes(SensorA));
-            sw.Stop();
-            FindAllOfMyString(textBoxSearchTargetA, listBoxDisplaySensorA);
-            ShowAllSensorData();
-            textboxIterativeSensorA.Text = String.Format("{0} ticks", sw.ElapsedTicks);
-            // needs clear textbox method.
+            if (!string.IsNullOrEmpty(textBoxSearchTargetA.Text))
+            {
+                if (SelectionSort(SensorA))
+                {
+                    DisplayListboxData(SensorA, listBoxDisplaySensorA);
+                    Stopwatch sw = new Stopwatch();
+                    sw.Start();
+                    int searchedIndex = BinarySearchIterative(SensorA, Double.Parse(textBoxSearchTargetA.Text.ToString()), 0, NumberOfNodes(SensorA));
+                    sw.Stop();
+                    HighlightData(searchedIndex, SensorA, listBoxDisplaySensorA);
+                    ShowAllSensorData();
+                    textboxIterativeSensorA.Text = String.Format("{0} ticks", sw.ElapsedTicks);
+                    ClearTextBox(textBoxSearchTargetA);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error! Textbox is empty, enter a value to search.");
+            }
         }
         private void iterativeSearchSensorBBtn_Click(object sender, EventArgs e)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            BinarySearchIterative(SensorB, Double.Parse(textBoxSearchTargetB.Text.ToString()), (int)SensorB.First.Value, NumberOfNodes(SensorB));
-            sw.Stop();
-            FindAllOfMyString(textBoxSearchTargetB, listBoxDisplaySensorB);
-            ShowAllSensorData();
-            textboxIterativeSearchB.Text = String.Format("{0} ticks", sw.ElapsedTicks);
-        }
-        #endregion
-        #region Highlight Values in listbox method
-        private void FindAllOfMyString(TextBox searchString, ListBox listboxHighlightData)
-        {
-            // Set the SelectionMode property of the ListBox to select multiple items.
-            listboxHighlightData.SelectionMode = SelectionMode.MultiExtended;
-
-            // Set our intial index variable to -1.
-            int initialIndex = -1;
-            // If the search string is empty exit.
-            if (searchString.Text != string.Empty)
+            if (!string.IsNullOrEmpty(textBoxSearchTargetB.Text))
             {
-                // Loop through and find each item that matches the search string.
-                do
+                if (SelectionSort(SensorB))
                 {
-                    // Retrieve the item based on the previous index found. Starts with -1 which searches start.
-                    initialIndex = listboxHighlightData.FindString(searchString.Text, initialIndex);
-                    // If no item is found that matches exit.
-                    if (initialIndex != -1)
-                    {
-                        // Since the FindString loops infinitely, determine if we found first item again and exit.
-                        if (listboxHighlightData.SelectedIndices.Count > 0)
-                        {
-                            if (initialIndex == listboxHighlightData.SelectedIndices[0])
-                                return;
-                        }
-                        // Select the item in the ListBox once it is found.
-                        listboxHighlightData.SetSelected(initialIndex, true);
-                    }
-                } while (initialIndex != -1);
+                    DisplayListboxData(SensorB, listBoxDisplaySensorB);
+                    Stopwatch sw = new Stopwatch();
+                    sw.Start();
+                    int searchedIndex = BinarySearchIterative(SensorB, Double.Parse(textBoxSearchTargetB.Text.ToString()), 0, NumberOfNodes(SensorB));
+                    sw.Stop();
+                    HighlightData(searchedIndex, SensorB, listBoxDisplaySensorB);
+                    ShowAllSensorData();
+                    textboxIterativeSearchB.Text = String.Format("{0} ticks", sw.ElapsedTicks);
+                    ClearTextBox(textBoxSearchTargetB);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error! Textbox is empty, enter a value to search.");
             }
         }
         #endregion
@@ -302,7 +324,7 @@ namespace MalinSpaceProject
         // linkedlist element from a successful search or the nearest neighbour value. The calling code argument
         // is the linkedlist name, search value, minimum list size and the number of nodes in the list.
         // The method code must follow the pseudo code supplied below in the Appendix.
-        #region Binary Search Recursive
+        #region Binary Search Recursive Method
         private int BinarySearchRecursive(LinkedList<double> list, double searchValue, int min, int max)
         {
             if (min <= max - 1)
@@ -323,34 +345,52 @@ namespace MalinSpaceProject
             }
             return min;
         }
+        #endregion
+        #region Binary Search Recursive Buttons
         private void recusiveSearchSensorABtn_Click(object sender, EventArgs e)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            BinarySearchIterative(SensorA, Double.Parse(textBoxSearchTargetA.Text.ToString()), (int)SensorA.First.Value, NumberOfNodes(SensorA));
-            sw.Stop();
-            FindAllOfMyString(textBoxSearchTargetA, listBoxDisplaySensorA);
-            ShowAllSensorData();
-            textboxRecursiveSensorA.Text = String.Format("{0} ticks", sw.ElapsedTicks);
-            ClearTextBox(textBoxSearchTargetA);
+            if (!string.IsNullOrEmpty(textBoxSearchTargetA.Text))
+            {
+                if (InsertionSort(SensorA))
+                {
+                    DisplayListboxData(SensorA, listBoxDisplaySensorA);
+                    Stopwatch sw = new Stopwatch();
+                    sw.Start();
+                    int searchedIndex = BinarySearchIterative(SensorA, Double.Parse(textBoxSearchTargetA.Text.ToString()), (int)SensorA.First.Value, NumberOfNodes(SensorA));
+                    sw.Stop();
+                    HighlightData(searchedIndex, SensorA, listBoxDisplaySensorA);
+                    ShowAllSensorData();
+                    textboxRecursiveSensorA.Text = String.Format("{0} ticks", sw.ElapsedTicks);
+                    ClearTextBox(textBoxSearchTargetA);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error! Textbox is empty, enter a value to search.");
+            }
         }
         private void recursiveSearchSensorBBtn_Click(object sender, EventArgs e)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            BinarySearchIterative(SensorB, Double.Parse(textBoxSearchTargetB.Text.ToString()), (int)SensorB.First.Value, NumberOfNodes(SensorB));
-            sw.Stop();
-            FindAllOfMyString(textBoxSearchTargetB, listBoxDisplaySensorB);
-            ShowAllSensorData();
-            textboxIterativeSearchB.Text = String.Format("{0} ticks", sw.ElapsedTicks);
-            ClearTextBox(textBoxSearchTargetB);
+            if (!string.IsNullOrEmpty(textBoxSearchTargetB.Text))
+            {
+                if (InsertionSort(SensorB))
+                {
+                    DisplayListboxData(SensorB, listBoxDisplaySensorB);
+                    Stopwatch sw = new Stopwatch();
+                    sw.Start();
+                    int searchedIndex = BinarySearchIterative(SensorB, Double.Parse(textBoxSearchTargetB.Text.ToString()), (int)SensorB.First.Value, NumberOfNodes(SensorB));
+                    sw.Stop();
+                    HighlightData(searchedIndex, SensorB, listBoxDisplaySensorB);
+                    ShowAllSensorData();
+                    textboxRecursiveSensorB.Text = String.Format("{0} ticks", sw.ElapsedTicks);
+                    ClearTextBox(textBoxSearchTargetB);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error! Textbox is empty, enter a value to search.");
+            }
         }
         #endregion
-
-        private void ClearTextBox(TextBox textboxSearch)
-        {
-            textboxSearch.Clear();
-            textboxSearch.Focus();
-        }
     }
 }
