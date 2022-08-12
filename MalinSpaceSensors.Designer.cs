@@ -71,8 +71,11 @@
             this.label12 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ClearAllTextBoxesButton = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.sigmaNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.muNumericUpDown)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // loadSensorDataButton
@@ -194,6 +197,7 @@
             this.sigmaNumericUpDown.Name = "sigmaNumericUpDown";
             this.sigmaNumericUpDown.Size = new System.Drawing.Size(132, 22);
             this.sigmaNumericUpDown.TabIndex = 8;
+            this.toolTip1.SetToolTip(this.sigmaNumericUpDown, "Min value: 10, Max value: 20");
             this.sigmaNumericUpDown.Value = new decimal(new int[] {
             10,
             0,
@@ -217,6 +221,7 @@
             this.muNumericUpDown.Name = "muNumericUpDown";
             this.muNumericUpDown.Size = new System.Drawing.Size(131, 22);
             this.muNumericUpDown.TabIndex = 9;
+            this.toolTip1.SetToolTip(this.muNumericUpDown, "Min value: 50, Max value: 75");
             this.muNumericUpDown.Value = new decimal(new int[] {
             50,
             0,
@@ -488,6 +493,7 @@
             this.textBoxSearchTargetA.Size = new System.Drawing.Size(89, 22);
             this.textBoxSearchTargetA.TabIndex = 35;
             this.toolTip1.SetToolTip(this.textBoxSearchTargetA, "Enter a value to search");
+            this.textBoxSearchTargetA.Click += new System.EventHandler(this.textBoxSearchTargetA_Click);
             this.textBoxSearchTargetA.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressAction);
             // 
             // textBoxSearchTargetB
@@ -498,6 +504,7 @@
             this.textBoxSearchTargetB.Size = new System.Drawing.Size(89, 22);
             this.textBoxSearchTargetB.TabIndex = 37;
             this.toolTip1.SetToolTip(this.textBoxSearchTargetB, "Enter a value to search");
+            this.textBoxSearchTargetB.Click += new System.EventHandler(this.textBoxSearchTargetB_Click);
             this.textBoxSearchTargetB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressAction);
             // 
             // label12
@@ -519,11 +526,28 @@
             this.ClearAllTextBoxesButton.UseVisualStyleBackColor = true;
             this.ClearAllTextBoxesButton.Click += new System.EventHandler(this.ClearAllTextBoxesButton_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 509);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1025, 22);
+            this.statusStrip1.TabIndex = 39;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 18);
+            // 
             // MalinSpaceSensors
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 531);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ClearAllTextBoxesButton);
             this.Controls.Add(this.textBoxSearchTargetB);
             this.Controls.Add(this.label12);
@@ -566,8 +590,11 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MalinSpaceSensors";
             this.Text = "Malin Space Systems Data Processing";
+            this.Click += new System.EventHandler(this.MalinSpaceSensors_Click);
             ((System.ComponentModel.ISupportInitialize)(this.sigmaNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.muNumericUpDown)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -617,6 +644,8 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button ClearAllTextBoxesButton;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 
