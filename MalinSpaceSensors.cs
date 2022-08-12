@@ -61,6 +61,7 @@ namespace MalinSpaceProject
         private void loadSensorDataButton_Click(object sender, EventArgs e)
         {
             PopulateSensors();
+            toolStripStatusLabel1.Text = "Raw data collected and displayed.";
         }
         #endregion
         // 4.5 Create a method called “NumberOfNodes” that will return an integer
@@ -132,7 +133,7 @@ namespace MalinSpaceProject
                 currentMin.Value = currentI.Value;
                 currentI.Value = temp;
             }
-            return true;   
+            return true;
         }
         #endregion
         // The button method must start a stopwatch before calling the sort method. Once the sort is complete
@@ -150,6 +151,7 @@ namespace MalinSpaceProject
                 sw.Stop();
                 DisplayListboxData(SensorA, listBoxDisplaySensorA);
                 textboxSelectionSortSensorA.Text = String.Format("{0:0.00} ms", sw.ElapsedMilliseconds);
+                toolStripStatusLabel1.Text = "Sensor A data sorted.";
                 ClearTextBox(textBoxSearchTargetA);
             }
             else
@@ -168,6 +170,7 @@ namespace MalinSpaceProject
                 sw.Stop();
                 DisplayListboxData(SensorB, listBoxDisplaySensorB);
                 textboxSelectionSortSensorB.Text = String.Format("{0:0.00} ms", sw.ElapsedMilliseconds);
+                toolStripStatusLabel1.Text = "Sensor B data sorted.";
                 ClearTextBox(textBoxSearchTargetB);
             }
             else
@@ -211,6 +214,7 @@ namespace MalinSpaceProject
                 sw.Stop();
                 DisplayListboxData(SensorA, listBoxDisplaySensorA);
                 textboxInsertionSensorA.Text = String.Format("{0:0.00} ms", sw.ElapsedMilliseconds);
+                toolStripStatusLabel1.Text = "Sensor A data sorted.";
                 ClearTextBox(textBoxSearchTargetA);
             }
             else
@@ -229,6 +233,7 @@ namespace MalinSpaceProject
                 sw.Stop();
                 DisplayListboxData(SensorB, listBoxDisplaySensorB);
                 textboxInsertionSensorB.Text = String.Format("{0:0.00} ms", sw.ElapsedMilliseconds);
+                toolStripStatusLabel1.Text = "Sensor B data sorted.";
                 ClearTextBox(textBoxSearchTargetB);
             }
             else
@@ -276,6 +281,7 @@ namespace MalinSpaceProject
                     sw.Start();
                     int searchedIndex = BinarySearchIterative(SensorA, Double.Parse(textBoxSearchTargetA.Text.ToString()), 0, NumberOfNodes(SensorA));
                     sw.Stop();
+                    toolStripStatusLabel1.Text = "Entered value to search is: " + textBoxSearchTargetA.Text;
                     HighlightData(searchedIndex, SensorA, listBoxDisplaySensorA);
                     textboxIterativeSensorA.Text = String.Format("{0} ticks", sw.ElapsedTicks);
                     ClearTextBox(textBoxSearchTargetA);
@@ -297,6 +303,7 @@ namespace MalinSpaceProject
                     sw.Start();
                     int searchedIndex = BinarySearchIterative(SensorB, Double.Parse(textBoxSearchTargetB.Text.ToString()), 0, NumberOfNodes(SensorB));
                     sw.Stop();
+                    toolStripStatusLabel1.Text = "Entered value to search is: " + textBoxSearchTargetB.Text;
                     HighlightData(searchedIndex, SensorB, listBoxDisplaySensorB);
                     textboxIterativeSearchB.Text = String.Format("{0} ticks", sw.ElapsedTicks);
                     ClearTextBox(textBoxSearchTargetB);
@@ -348,6 +355,7 @@ namespace MalinSpaceProject
                     // check why code crashes when it's a negative integer.
                     int searchedIndex = BinarySearchIterative(SensorA, Double.Parse(textBoxSearchTargetA.Text.ToString()), 0, NumberOfNodes(SensorA));
                     sw.Stop();
+                    toolStripStatusLabel1.Text = "Entered value to search is: " + textBoxSearchTargetA.Text;
                     HighlightData(searchedIndex, SensorA, listBoxDisplaySensorA);
                     textboxRecursiveSensorA.Text = String.Format("{0} ticks", sw.ElapsedTicks);
                     ClearTextBox(textBoxSearchTargetA);
@@ -369,6 +377,7 @@ namespace MalinSpaceProject
                     sw.Start();
                     int searchedIndex = BinarySearchIterative(SensorB, Double.Parse(textBoxSearchTargetB.Text.ToString()), 0, NumberOfNodes(SensorB));
                     sw.Stop();
+                    toolStripStatusLabel1.Text = "Entered value to search is: " + textBoxSearchTargetB.Text;
                     HighlightData(searchedIndex, SensorB, listBoxDisplaySensorB);
                     textboxRecursiveSensorB.Text = String.Format("{0} ticks", sw.ElapsedTicks);
                     ClearTextBox(textBoxSearchTargetB);
@@ -426,7 +435,6 @@ namespace MalinSpaceProject
                 }
             }
         }
-       
         private void ClearTextBox(TextBox textboxSearch)
         {
             textboxSearch.Clear();
@@ -443,6 +451,25 @@ namespace MalinSpaceProject
             textboxRecursiveSensorB.Clear();
             textboxSelectionSortSensorB.Clear();
             textboxInsertionSensorB.Clear();
+            toolStripStatusLabel1.Text = "All textboxes cleared.";
+        }
+        private void ClearStatusMessage()
+        {
+            toolStripStatusLabel1.Text = "";
+        }
+        private void MalinSpaceSensors_Click(object sender, EventArgs e)
+        {
+            ClearStatusMessage();
+        }
+        private void textBoxSearchTargetA_Click(object sender, EventArgs e)
+        {
+            listBoxDisplaySensorB.SelectedIndices.Clear();
+            ClearStatusMessage();
+        }
+        private void textBoxSearchTargetB_Click(object sender, EventArgs e)
+        {
+            listBoxDisplaySensorA.SelectedIndices.Clear();
+            ClearStatusMessage();
         }
         #endregion
     }
