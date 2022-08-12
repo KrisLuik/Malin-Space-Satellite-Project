@@ -70,6 +70,7 @@
             this.textBoxSearchTargetB = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ClearAllTextBoxesButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sigmaNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.muNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -110,7 +111,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calisto MT", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(539, 66);
+            this.label3.Location = new System.Drawing.Point(547, 5);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(105, 26);
             this.label3.TabIndex = 3;
@@ -120,7 +121,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calisto MT", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(881, 69);
+            this.label4.Location = new System.Drawing.Point(883, 4);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 26);
             this.label4.TabIndex = 4;
@@ -136,7 +137,7 @@
             this.listviewDisplaybox.Location = new System.Drawing.Point(23, 96);
             this.listviewDisplaybox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listviewDisplaybox.Name = "listviewDisplaybox";
-            this.listviewDisplaybox.Size = new System.Drawing.Size(280, 427);
+            this.listviewDisplaybox.Size = new System.Drawing.Size(280, 403);
             this.listviewDisplaybox.TabIndex = 5;
             this.toolTip1.SetToolTip(this.listviewDisplaybox, "Data from two sensors");
             this.listviewDisplaybox.UseCompatibleStateImageBehavior = false;
@@ -156,7 +157,7 @@
             // 
             this.listBoxDisplaySensorA.FormattingEnabled = true;
             this.listBoxDisplaySensorA.ItemHeight = 16;
-            this.listBoxDisplaySensorA.Location = new System.Drawing.Point(521, 103);
+            this.listBoxDisplaySensorA.Location = new System.Drawing.Point(521, 38);
             this.listBoxDisplaySensorA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxDisplaySensorA.Name = "listBoxDisplaySensorA";
             this.listBoxDisplaySensorA.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -168,7 +169,7 @@
             // 
             this.listBoxDisplaySensorB.FormattingEnabled = true;
             this.listBoxDisplaySensorB.ItemHeight = 16;
-            this.listBoxDisplaySensorB.Location = new System.Drawing.Point(864, 102);
+            this.listBoxDisplaySensorB.Location = new System.Drawing.Point(864, 36);
             this.listBoxDisplaySensorB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxDisplaySensorB.Name = "listBoxDisplaySensorB";
             this.listBoxDisplaySensorB.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -225,7 +226,7 @@
             // iterativeSearchALabel
             // 
             this.iterativeSearchALabel.AutoSize = true;
-            this.iterativeSearchALabel.Location = new System.Drawing.Point(341, 94);
+            this.iterativeSearchALabel.Location = new System.Drawing.Point(341, 29);
             this.iterativeSearchALabel.Name = "iterativeSearchALabel";
             this.iterativeSearchALabel.Size = new System.Drawing.Size(141, 16);
             this.iterativeSearchALabel.TabIndex = 10;
@@ -234,7 +235,7 @@
             // iterativeSearchBLabel
             // 
             this.iterativeSearchBLabel.AutoSize = true;
-            this.iterativeSearchBLabel.Location = new System.Drawing.Point(693, 96);
+            this.iterativeSearchBLabel.Location = new System.Drawing.Point(693, 30);
             this.iterativeSearchBLabel.Name = "iterativeSearchBLabel";
             this.iterativeSearchBLabel.Size = new System.Drawing.Size(141, 16);
             this.iterativeSearchBLabel.TabIndex = 11;
@@ -242,7 +243,7 @@
             // 
             // iterativeSearchSensorABtn
             // 
-            this.iterativeSearchSensorABtn.Location = new System.Drawing.Point(344, 117);
+            this.iterativeSearchSensorABtn.Location = new System.Drawing.Point(344, 52);
             this.iterativeSearchSensorABtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iterativeSearchSensorABtn.Name = "iterativeSearchSensorABtn";
             this.iterativeSearchSensorABtn.Size = new System.Drawing.Size(144, 23);
@@ -254,7 +255,7 @@
             // 
             // iterativeSearchSensorBBtn
             // 
-            this.iterativeSearchSensorBBtn.Location = new System.Drawing.Point(692, 119);
+            this.iterativeSearchSensorBBtn.Location = new System.Drawing.Point(692, 53);
             this.iterativeSearchSensorBBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iterativeSearchSensorBBtn.Name = "iterativeSearchSensorBBtn";
             this.iterativeSearchSensorBBtn.Size = new System.Drawing.Size(141, 23);
@@ -266,7 +267,7 @@
             // 
             // textboxIterativeSensorA
             // 
-            this.textboxIterativeSensorA.Location = new System.Drawing.Point(344, 145);
+            this.textboxIterativeSensorA.Location = new System.Drawing.Point(344, 80);
             this.textboxIterativeSensorA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textboxIterativeSensorA.Name = "textboxIterativeSensorA";
             this.textboxIterativeSensorA.ReadOnly = true;
@@ -276,7 +277,7 @@
             // 
             // textboxIterativeSearchB
             // 
-            this.textboxIterativeSearchB.Location = new System.Drawing.Point(692, 148);
+            this.textboxIterativeSearchB.Location = new System.Drawing.Point(692, 82);
             this.textboxIterativeSearchB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textboxIterativeSearchB.Name = "textboxIterativeSearchB";
             this.textboxIterativeSearchB.ReadOnly = true;
@@ -286,7 +287,7 @@
             // 
             // textboxRecursiveSensorA
             // 
-            this.textboxRecursiveSensorA.Location = new System.Drawing.Point(344, 242);
+            this.textboxRecursiveSensorA.Location = new System.Drawing.Point(344, 177);
             this.textboxRecursiveSensorA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textboxRecursiveSensorA.Name = "textboxRecursiveSensorA";
             this.textboxRecursiveSensorA.ReadOnly = true;
@@ -296,7 +297,7 @@
             // 
             // recusiveSearchSensorABtn
             // 
-            this.recusiveSearchSensorABtn.Location = new System.Drawing.Point(344, 214);
+            this.recusiveSearchSensorABtn.Location = new System.Drawing.Point(344, 149);
             this.recusiveSearchSensorABtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.recusiveSearchSensorABtn.Name = "recusiveSearchSensorABtn";
             this.recusiveSearchSensorABtn.Size = new System.Drawing.Size(144, 23);
@@ -309,7 +310,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(341, 191);
+            this.label5.Location = new System.Drawing.Point(341, 126);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(155, 16);
             this.label5.TabIndex = 16;
@@ -317,7 +318,7 @@
             // 
             // textboxRecursiveSensorB
             // 
-            this.textboxRecursiveSensorB.Location = new System.Drawing.Point(696, 244);
+            this.textboxRecursiveSensorB.Location = new System.Drawing.Point(696, 178);
             this.textboxRecursiveSensorB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textboxRecursiveSensorB.Name = "textboxRecursiveSensorB";
             this.textboxRecursiveSensorB.ReadOnly = true;
@@ -327,7 +328,7 @@
             // 
             // recursiveSearchSensorBBtn
             // 
-            this.recursiveSearchSensorBBtn.Location = new System.Drawing.Point(696, 215);
+            this.recursiveSearchSensorBBtn.Location = new System.Drawing.Point(696, 149);
             this.recursiveSearchSensorBBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.recursiveSearchSensorBBtn.Name = "recursiveSearchSensorBBtn";
             this.recursiveSearchSensorBBtn.Size = new System.Drawing.Size(144, 23);
@@ -340,7 +341,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(693, 192);
+            this.label6.Location = new System.Drawing.Point(693, 126);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(155, 16);
             this.label6.TabIndex = 19;
@@ -348,7 +349,7 @@
             // 
             // textboxSelectionSortSensorA
             // 
-            this.textboxSelectionSortSensorA.Location = new System.Drawing.Point(344, 414);
+            this.textboxSelectionSortSensorA.Location = new System.Drawing.Point(344, 349);
             this.textboxSelectionSortSensorA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textboxSelectionSortSensorA.Name = "textboxSelectionSortSensorA";
             this.textboxSelectionSortSensorA.ReadOnly = true;
@@ -358,7 +359,7 @@
             // 
             // selectionSortSensorABtn
             // 
-            this.selectionSortSensorABtn.Location = new System.Drawing.Point(344, 384);
+            this.selectionSortSensorABtn.Location = new System.Drawing.Point(344, 319);
             this.selectionSortSensorABtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.selectionSortSensorABtn.Name = "selectionSortSensorABtn";
             this.selectionSortSensorABtn.Size = new System.Drawing.Size(144, 23);
@@ -371,7 +372,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(341, 362);
+            this.label7.Location = new System.Drawing.Point(341, 297);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(90, 16);
             this.label7.TabIndex = 22;
@@ -379,7 +380,7 @@
             // 
             // textboxSelectionSortSensorB
             // 
-            this.textboxSelectionSortSensorB.Location = new System.Drawing.Point(695, 418);
+            this.textboxSelectionSortSensorB.Location = new System.Drawing.Point(695, 352);
             this.textboxSelectionSortSensorB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textboxSelectionSortSensorB.Name = "textboxSelectionSortSensorB";
             this.textboxSelectionSortSensorB.ReadOnly = true;
@@ -389,7 +390,7 @@
             // 
             // selectionSortSensorBBtn
             // 
-            this.selectionSortSensorBBtn.Location = new System.Drawing.Point(695, 389);
+            this.selectionSortSensorBBtn.Location = new System.Drawing.Point(695, 323);
             this.selectionSortSensorBBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.selectionSortSensorBBtn.Name = "selectionSortSensorBBtn";
             this.selectionSortSensorBBtn.Size = new System.Drawing.Size(144, 23);
@@ -402,7 +403,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(692, 366);
+            this.label8.Location = new System.Drawing.Point(692, 300);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(90, 16);
             this.label8.TabIndex = 25;
@@ -410,7 +411,7 @@
             // 
             // textboxInsertionSensorA
             // 
-            this.textboxInsertionSensorA.Location = new System.Drawing.Point(344, 498);
+            this.textboxInsertionSensorA.Location = new System.Drawing.Point(344, 433);
             this.textboxInsertionSensorA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textboxInsertionSensorA.Name = "textboxInsertionSensorA";
             this.textboxInsertionSensorA.ReadOnly = true;
@@ -420,7 +421,7 @@
             // 
             // insertionSortSensorABtn
             // 
-            this.insertionSortSensorABtn.Location = new System.Drawing.Point(344, 470);
+            this.insertionSortSensorABtn.Location = new System.Drawing.Point(344, 405);
             this.insertionSortSensorABtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.insertionSortSensorABtn.Name = "insertionSortSensorABtn";
             this.insertionSortSensorABtn.Size = new System.Drawing.Size(144, 23);
@@ -433,7 +434,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(341, 447);
+            this.label9.Location = new System.Drawing.Point(341, 382);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(84, 16);
             this.label9.TabIndex = 28;
@@ -441,7 +442,7 @@
             // 
             // textboxInsertionSensorB
             // 
-            this.textboxInsertionSensorB.Location = new System.Drawing.Point(695, 498);
+            this.textboxInsertionSensorB.Location = new System.Drawing.Point(695, 432);
             this.textboxInsertionSensorB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textboxInsertionSensorB.Name = "textboxInsertionSensorB";
             this.textboxInsertionSensorB.ReadOnly = true;
@@ -451,7 +452,7 @@
             // 
             // insertionSortSensorBBtn
             // 
-            this.insertionSortSensorBBtn.Location = new System.Drawing.Point(695, 470);
+            this.insertionSortSensorBBtn.Location = new System.Drawing.Point(695, 404);
             this.insertionSortSensorBBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.insertionSortSensorBBtn.Name = "insertionSortSensorBBtn";
             this.insertionSortSensorBBtn.Size = new System.Drawing.Size(144, 23);
@@ -464,7 +465,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(692, 447);
+            this.label10.Location = new System.Drawing.Point(692, 381);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(84, 16);
             this.label10.TabIndex = 31;
@@ -473,7 +474,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(340, 294);
+            this.label11.Location = new System.Drawing.Point(340, 229);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(93, 16);
             this.label11.TabIndex = 34;
@@ -481,7 +482,7 @@
             // 
             // textBoxSearchTargetA
             // 
-            this.textBoxSearchTargetA.Location = new System.Drawing.Point(344, 314);
+            this.textBoxSearchTargetA.Location = new System.Drawing.Point(344, 249);
             this.textBoxSearchTargetA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxSearchTargetA.Name = "textBoxSearchTargetA";
             this.textBoxSearchTargetA.Size = new System.Drawing.Size(89, 22);
@@ -491,7 +492,7 @@
             // 
             // textBoxSearchTargetB
             // 
-            this.textBoxSearchTargetB.Location = new System.Drawing.Point(692, 316);
+            this.textBoxSearchTargetB.Location = new System.Drawing.Point(692, 250);
             this.textBoxSearchTargetB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxSearchTargetB.Name = "textBoxSearchTargetB";
             this.textBoxSearchTargetB.Size = new System.Drawing.Size(89, 22);
@@ -502,17 +503,28 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(689, 297);
+            this.label12.Location = new System.Drawing.Point(689, 231);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(93, 16);
             this.label12.TabIndex = 36;
             this.label12.Text = "Search Target";
             // 
+            // ClearAllTextBoxesButton
+            // 
+            this.ClearAllTextBoxesButton.Location = new System.Drawing.Point(521, 463);
+            this.ClearAllTextBoxesButton.Name = "ClearAllTextBoxesButton";
+            this.ClearAllTextBoxesButton.Size = new System.Drawing.Size(488, 36);
+            this.ClearAllTextBoxesButton.TabIndex = 38;
+            this.ClearAllTextBoxesButton.Text = "Clear All Textboxes";
+            this.ClearAllTextBoxesButton.UseVisualStyleBackColor = true;
+            this.ClearAllTextBoxesButton.Click += new System.EventHandler(this.ClearAllTextBoxesButton_Click);
+            // 
             // MalinSpaceSensors
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1025, 551);
+            this.ClientSize = new System.Drawing.Size(1025, 531);
+            this.Controls.Add(this.ClearAllTextBoxesButton);
             this.Controls.Add(this.textBoxSearchTargetB);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.textBoxSearchTargetA);
@@ -604,6 +616,7 @@
         private System.Windows.Forms.TextBox textBoxSearchTargetB;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button ClearAllTextBoxesButton;
     }
 }
 
