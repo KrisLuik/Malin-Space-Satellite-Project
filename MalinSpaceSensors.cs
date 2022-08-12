@@ -103,14 +103,34 @@ namespace MalinSpaceProject
                 e.Handled = true;
             }
 
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            if ((tb.Text.IndexOf('-') > -1) && tb.SelectionStart == 0 && !tb.SelectedText.Contains('-'))
+            {
+                e.Handled = true;
+            }
+            // Do not accept a character that is not included in the following.
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '-')
             {
                 e.Handled = true;
             }
             // Only allow one decimal point.
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            if ((e.KeyChar == '.') && (tb.Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
+            }
+            // The negative sign can only be at the start.
+            if ((e.KeyChar == '-'))
+            {
+                // If the cursor is not at the start of the text, the key press is not valid.
+                if (tb.SelectionStart > 0)
+                {
+                    e.Handled = true;
+                }
+                // If there is already a negative sign and the negative sign is not selected, the key press is not valid
+                // This allows the user to highlight some of the text and replace it with a negative sign.
+                if (tb.Text.IndexOf('-') > -1 && !tb.SelectedText.Contains('-'))
+                {
+                    e.Handled = true;
+                }
             }
         }
         private void ClearTextBox(TextBox textboxSearch)
@@ -174,26 +194,21 @@ namespace MalinSpaceProject
         // SensorA Selection Sort Button.
         private void selectionSortSensorABtn_MouseClick(object sender, MouseEventArgs e)
         {
-            PopulateSensors();
             Stopwatch sw = new Stopwatch();
             sw.Start();
             SelectionSort(SensorA);
             sw.Stop();
-            ShowAllSensorData();
             DisplayListboxData(SensorA, listBoxDisplaySensorA);
             textboxSelectionSortSensorA.Text = String.Format("{0:0.00} ms", sw.ElapsedMilliseconds);
             ClearTextBox(textBoxSearchTargetA);
-
         }
         // SensorB Selection Sort Button.
         private void selectionSortSensorBBtn_Click(object sender, EventArgs e)
         {
-            PopulateSensors();
             Stopwatch sw = new Stopwatch();
             sw.Start();
             SelectionSort(SensorB);
             sw.Stop();
-            ShowAllSensorData();
             DisplayListboxData(SensorB, listBoxDisplaySensorB);
             textboxSelectionSortSensorB.Text = String.Format("{0:0.00} ms", sw.ElapsedMilliseconds);
             ClearTextBox(textBoxSearchTargetB);
@@ -226,12 +241,10 @@ namespace MalinSpaceProject
         // SensorA insertion sort button. 
         private void insertionSortSensorABtn_Click(object sender, EventArgs e)
         {
-            PopulateSensors();
             Stopwatch sw = new Stopwatch();
             sw.Start();
             InsertionSort(SensorA);
             sw.Stop();
-            ShowAllSensorData();
             DisplayListboxData(SensorA, listBoxDisplaySensorA);
             textboxInsertionSensorA.Text = String.Format("{0:0.00} ms", sw.ElapsedMilliseconds);
             ClearTextBox(textBoxSearchTargetA);
@@ -239,12 +252,10 @@ namespace MalinSpaceProject
         // SensorB insertion sort button.
         private void insertionSortSensorBBtn_Click(object sender, EventArgs e)
         {
-            PopulateSensors();
             Stopwatch sw = new Stopwatch();
             sw.Start();
             InsertionSort(SensorB);
             sw.Stop();
-            ShowAllSensorData();
             DisplayListboxData(SensorB, listBoxDisplaySensorB);
             textboxInsertionSensorB.Text = String.Format("{0:0.00} ms", sw.ElapsedMilliseconds);
             ClearTextBox(textBoxSearchTargetB);
@@ -290,7 +301,6 @@ namespace MalinSpaceProject
                     int searchedIndex = BinarySearchIterative(SensorA, Double.Parse(textBoxSearchTargetA.Text.ToString()), 0, NumberOfNodes(SensorA));
                     sw.Stop();
                     HighlightData(searchedIndex, SensorA, listBoxDisplaySensorA);
-                    ShowAllSensorData();
                     textboxIterativeSensorA.Text = String.Format("{0} ticks", sw.ElapsedTicks);
                     ClearTextBox(textBoxSearchTargetA);
                 }
@@ -312,7 +322,6 @@ namespace MalinSpaceProject
                     int searchedIndex = BinarySearchIterative(SensorB, Double.Parse(textBoxSearchTargetB.Text.ToString()), 0, NumberOfNodes(SensorB));
                     sw.Stop();
                     HighlightData(searchedIndex, SensorB, listBoxDisplaySensorB);
-                    ShowAllSensorData();
                     textboxIterativeSearchB.Text = String.Format("{0} ticks", sw.ElapsedTicks);
                     ClearTextBox(textBoxSearchTargetB);
                 }
@@ -360,10 +369,10 @@ namespace MalinSpaceProject
                     DisplayListboxData(SensorA, listBoxDisplaySensorA);
                     Stopwatch sw = new Stopwatch();
                     sw.Start();
+                    // check why code crashes when it's a negative integer.
                     int searchedIndex = BinarySearchIterative(SensorA, Double.Parse(textBoxSearchTargetA.Text.ToString()), 0, NumberOfNodes(SensorA));
                     sw.Stop();
                     HighlightData(searchedIndex, SensorA, listBoxDisplaySensorA);
-                    ShowAllSensorData();
                     textboxRecursiveSensorA.Text = String.Format("{0} ticks", sw.ElapsedTicks);
                     ClearTextBox(textBoxSearchTargetA);
                 }
@@ -385,7 +394,6 @@ namespace MalinSpaceProject
                     int searchedIndex = BinarySearchIterative(SensorB, Double.Parse(textBoxSearchTargetB.Text.ToString()), 0, NumberOfNodes(SensorB));
                     sw.Stop();
                     HighlightData(searchedIndex, SensorB, listBoxDisplaySensorB);
-                    ShowAllSensorData();
                     textboxRecursiveSensorB.Text = String.Format("{0} ticks", sw.ElapsedTicks);
                     ClearTextBox(textBoxSearchTargetB);
                 }
