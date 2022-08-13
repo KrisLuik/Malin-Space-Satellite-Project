@@ -413,6 +413,7 @@ namespace MalinSpaceProject
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '-')
             {
                 e.Handled = true;
+                toolStripStatusLabel1.Text = "This application accepts numbers, negative values, and a single decimal point.";
             }
             // Only allow one decimal point.
             if ((e.KeyChar == '.') && (tb.Text.IndexOf('.') > -1))
